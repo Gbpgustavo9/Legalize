@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Cadastro</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -37,7 +37,7 @@
             filter: drop-shadow(0 2px 8px #000a);
         }
 
-        .login-box {
+        .register-box {
             background: rgba(0, 0, 0, 0.6);
             padding: 32px 36px;
             border-radius: 14px;
@@ -46,40 +46,24 @@
             min-width: 320px;
         }
 
-        .login-box h2 {
-            margin-bottom: 18px;
-            font-size: 2.3rem;
-            letter-spacing: 1.2px;
-            font-family: "Gill Sans", sans-serif;            
-            font-weight: 700;
-            color: #ffffffff;
-        }
-            <div class="login-title">Login</div>
-            text-transform: uppercase;
-        }
-        .login-title {
+        .register-title {
             margin-bottom: 20px;
             font-size: 2.5rem;
             letter-spacing: 2px;
             font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
             font-weight: 700;
             color: #a66a2c;
-            text-shadow: 0 4px 18px #000a, 0 1px 0 #fff2;
+            text-shadow: 1px 2px 8px #000a, 0 1px 0 #fff2;
             text-transform: uppercase;
-            background: linear-gradient(90deg, #fff2, #a66a2c22 60%, #fff2);
-            border-radius: 10px;
-            padding: 10px 0 10px 0;
-            box-shadow: 0 2px 8px #0002;
-            letter-spacing: 3px;
         }
 
-        .login-box form {
+        .register-box form {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0;
         }
-        .login-box input {
+        .register-box input, .register-box select {
             width: 220px;
             padding: 8px 10px;
             margin: 8px 0 0 0;
@@ -92,15 +76,15 @@
             box-sizing: border-box;
             display: block;
         }
-        .login-box input:first-child {
+        .register-box input:first-child {
             margin-top: 0;
         }
-        .login-box input:focus {
+        .register-box input:focus, .register-box select:focus {
             background: #fff4;
             outline: 2px solid #a66a2c;
         }
 
-        .login-box button {
+        .register-box button {
             width: 220px;
             padding: 8px 10px;
             background: #a66a2c;
@@ -115,43 +99,52 @@
             transition: background 0.2s, transform 0.1s;
             display: block;
         }
-         .login-links {
+        .register-box button:hover {
+            background: #a66a2c;
+            opacity: 0.85;
+            transform: translateY(-2px) scale(1.03);
+        }
+        .register-links {
             margin-top: 18px;
             display: flex;
             flex-direction: column;
             gap: 8px;
             align-items: center;
         }
-        .login-links a {
+        .register-links a {
             color: #a66a2c;
             text-decoration: none;
             font-size: 0.98rem;
             transition: color 0.2s;
         }
-        .login-links a:hover {
+        .register-links a:hover {
             color: #fff;
             text-decoration: underline;
-        }
-        .login-box button:hover {
-            background: #a66a2c;
-            opacity: 0.85;
-            transform: translateY(-2px) scale(1.03);
         }
     </style>
 </head>
 <body>
     <div class="container">
-    <img src="/emblema.png" alt="Logo Legalize" class="logo">
-        <div class="login-box">
-            <h2>Login</h2>
-            <form action="login.php" method="POST">
+        <img src="/emblema.png" alt="Logo Legalize" class="logo">
+        <div class="register-box">
+            <div class="register-title">Cadastro</div>
+            <form action="cadastrar_usuario.php" method="POST">
+                <input type="text" name="nome" placeholder="Nome completo" required>
+                <input type="text" name="cpf" placeholder="CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                <input type="date" name="data_nascimento" placeholder="Data de Nascimento" required>
+                <input type="text" name="endereco" placeholder="Endereço" required>
+                <select name="cargo" required>
+                    <option value="">Selecione o cargo</option>
+                    <option value="estudante">Estudante</option>
+                    <option value="advogado">Advogado(a)</option>
+                    <option value="outro">Outro</option>
+                </select>
                 <input type="text" name="usuario" placeholder="Usuário" required>
                 <input type="password" name="senha" placeholder="Senha" required>
-                <button type="submit">Entrar</button>
+                <button type="submit">Cadastrar</button>
             </form>
-            <div class="login-links">
-                <a href="redefinir_senha.php">Esqueceu a senha?</a>
-                <a href="/cadastrar-usuario">Cadastrar novo usuário</a>
+            <div class="register-links">
+                <a href="index.php">Já tem conta? Faça login</a>
             </div>
         </div>
     </div>
