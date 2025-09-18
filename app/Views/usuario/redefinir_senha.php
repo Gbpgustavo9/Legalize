@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Redefinir Senha</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -17,7 +17,6 @@
             font-family: Arial, sans-serif;
             color: #fff;
         }
-
         .container {
             display: flex;
             flex-direction: row;
@@ -28,7 +27,6 @@
             padding: 40px 30px;
             gap: 40px;
         }
-
         .logo {
             max-width: 220px;
             height: auto;
@@ -36,8 +34,7 @@
             margin: 0;
             filter: drop-shadow(0 2px 8px #000a);
         }
-
-        .login-box {
+        .reset-box {
             background: rgba(63, 0, 0, 0.59);
             padding: 32px 36px;
             border-radius: 14px;
@@ -45,65 +42,49 @@
             text-align: center;
             min-width: 320px;
         }
-
-        .login-box h2 {
-            margin-bottom: 18px;
+        .reset-title {
+            margin-bottom: 20px;
             font-size: 1.7rem;
             letter-spacing: 1.2px;
             font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
             font-weight: 600;
             color: #ffffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-        .login-title {
-            margin-bottom: 20px;
-            font-size: 2.5rem;
-            letter-spacing: 2px;
-            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-            font-weight: 700;
-            color: #a66a2c;
-            text-shadow: 0 4px 18px #000a, 0 1px 0 #fff2;
-            text-transform: uppercase;
-            background: linear-gradient(90deg, #fff2, #a66a2c22 60%, #fff2);
-            border-radius: 10px;
-            padding: 10px 0 10px 0;
-            box-shadow: 0 2px 8px #0002;
-            letter-spacing: 3px;
-        }
-
-        .login-box form {
+        .reset-box form {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0;
+            width: 100%;
         }
-        .login-box input {
+        .reset-box input {
             width: 220px;
             padding: 8px 10px;
-            margin: 8px 0 0 0;
+            margin: 8px auto 0 auto;
             border: none;
             border-radius: 6px;
             font-size: 0.98rem;
-            background: #fff2;
-            color: #fff;
-            transition: background 0.2s;
+            background: #2e0303;
+            color: #fff !important;
+            transition: background 0.2s, color 0.2s;
             box-sizing: border-box;
             display: block;
             font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
             text-align: left;
-            color: #fff !important;
-            opacity: 1;
-            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-            font-size: 0.98rem;
         }
-        .login-box input:first-child {
+        .reset-box input:first-child {
             margin-top: 0;
         }
-        .login-box input:focus {
-            background: #fff4;
+        .reset-box input:focus {
+            background: #fff6;
             outline: 2px solid #a66a2c;
+            box-shadow: 0 0 0 2px #a66a2c88, 0 2px 8px #a66a2c22;
         }
-
-        .login-box button {
+        .reset-box button {
             width: 220px;
             padding: 8px 10px;
             background: #a66a2c;
@@ -113,19 +94,23 @@
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            margin: 12px 0 0 0;
+            margin: 12px auto 0 auto;
             box-shadow: 0 2px 8px rgba(201, 0, 0, 0.27);
             transition: background 0.2s, transform 0.1s;
             display: block;
         }
-         .login-links {
+        .reset-box button:hover {
+            opacity: 0.85;
+            transform: translateY(-2px) scale(1.03);
+        }
+        .reset-links {
             margin-top: 18px;
             display: flex;
             flex-direction: column;
             gap: 8px;
             align-items: center;
         }
-        .login-links a {
+        .reset-links a {
             color: #ffffffff;
             text-decoration: none;
             font-size: 0.80rem;
@@ -135,16 +120,12 @@
             font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
             padding: 2px 8px;
         }
-        .login-links a:hover {
+        .reset-links a:hover {
             color: #fff;
             text-decoration: underline;
             opacity: 0.85;
             transform: translateY(-2px) scale(1.03);
             box-shadow: 0 2px 8px #0004;
-        }
-        .login-box button:hover {
-            opacity: 0.85;
-            transform: translateY(-2px) scale(1.03);
         }
         .fade-in {
             opacity: 0;
@@ -157,50 +138,62 @@
                 transform: none;
             }
         }
-        .login-box input:focus {
-            box-shadow: 0 0 0 2px #a66a2c88, 0 2px 8px #a66a2c22;
-        }
-        .login-box button:active {
-            transform: scale(0.97);
-            box-shadow: 0 1px 4px #0002;
-        }
     </style>
 </head>
 <body>
     <div class="container fade-in" id="mainContainer">
         <img src="/emblema.png" alt="Logo Legalize" class="logo fade-in" id="logoImg" style="animation-delay:0.2s">
-        <div class="login-box fade-in" id="loginBox" style="animation-delay:0.4s">
-            <h2 style="display:flex;align-items:center;justify-content:center;gap:10px;">
+        <div class="reset-box fade-in" id="resetBox" style="animation-delay:0.4s">
+            <div class="reset-title" style="display:flex;align-items:center;justify-content:center;gap:10px;">
                 <span style="display:inline-flex;align-items:center;">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;"><circle cx="12" cy="8" r="4.2" stroke="#a66a2c" stroke-width="1.7" fill="none"/><path d="M4.5 20c0-3.5 3.5-6 7.5-6s7.5 2.5 7.5 6" stroke="#a66a2c" stroke-width="1.7" fill="none" stroke-linecap="round"/></svg>
                 </span>
-                Login
-            </h2>
+                Redefinir Senha
+            </div>
             <?php if (session()->getFlashdata('error')): ?>
                 <div style="color:#fff;background:rgba(143, 0, 0, 0.73);padding:8px 0 8px 0;margin-bottom:10px;border-radius:6px;font-size:0.98rem;">
                     <?= session()->getFlashdata('error') ?>
                 </div>
             <?php endif; ?>
-            <form action="login.php" method="POST">
+            <form action="redefinir_senha.php" method="POST">
                 <input type="text" name="usuario" placeholder="Usuário" required id="usuarioInput">
-                <input type="password" name="senha" placeholder="Senha" required id="senhaInput">
-                <button type="submit" id="entrarBtn">Entrar</button>
+                <input type="text" name="cpf" placeholder="CPF" required maxlength="14" id="cpfInput">
+                <input type="password" name="nova_senha" placeholder="Nova senha" required id="novaSenhaInput">
+                <button type="submit" id="redefinirBtn">Confirmar</button>
             </form>
-            <div class="login-links">
-                <a href="redefinir_senha.php">Esqueceu a senha?</a>
-                <a href="/cadastrar-usuario">Cadastrar novo usuário</a>
+            <div class="reset-links">
+                <a href="index.php">Voltar ao login</a>
             </div>
         </div>
     </div>
     <script>
+    // Máscara para o campo de CPF
+    document.addEventListener('DOMContentLoaded', function() {
+        var cpfInput = document.getElementById('cpfInput');
+        if (cpfInput) {
+            cpfInput.addEventListener('input', function(e) {
+                let v = this.value.replace(/\D/g, '');
+                if (v.length > 11) v = v.slice(0, 11);
+                v = v.replace(/(\d{3})(\d)/, '$1.$2');
+                v = v.replace(/(\d{3})(\d)/, '$1.$2');
+                v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                this.value = v;
+            });
+        }
+    });
+    // Animação de fade-in com delays
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('mainContainer').style.animationDelay = '0s';
         document.getElementById('logoImg').style.animationDelay = '0.2s';
-        document.getElementById('loginBox').style.animationDelay = '0.4s';
+        document.getElementById('resetBox').style.animationDelay = '0.4s';
     });
+    // Efeito de foco animado nos inputs
+    const usuarioInput = document.getElementById('usuarioInput');
+    const cpfInput = document.getElementById('cpfInput');
+    const novaSenhaInput = document.getElementById('novaSenhaInput');
 
-    const inputs = [document.getElementById('usuarioInput'), document.getElementById('senhaInput')];
-    inputs.forEach(input => {
+    [usuarioInput, cpfInput, novaSenhaInput].forEach(input => {
+        if (!input) return;
         input.addEventListener('focus', function() {
             this.style.background = '#fff6';
         });
@@ -211,12 +204,17 @@
                 this.style.background = '#fff2';
             }
         });
+        input.addEventListener('input', function() {
+            if (this.value.trim() !== '') {
+                this.style.background = '#fff2';
+            }
+        });
         if (input.value.trim() === '') {
             input.style.background = '#2e0303';
         }
     });
-
-    const btn = document.getElementById('entrarBtn');
+    // Efeito de clique animado no botão
+    const btn = document.getElementById('redefinirBtn');
     btn.addEventListener('mousedown', function() {
         this.style.transform = 'scale(0.97)';
     });
