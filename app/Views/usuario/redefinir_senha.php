@@ -17,11 +17,11 @@
             font-family: Arial, sans-serif;
             color: #fff;
         }
-        .container {
+         .container {
             display: flex;
             flex-direction: row;
             align-items: center;
-            background: rgba(143, 0, 0, 0.73);
+            background: linear-gradient(135deg, rgba(109, 0, 0, 0.73), rgba(143, 0, 0, 0.73));
             border-radius: 18px;
             box-shadow: 0 6px 24px rgba(0,0,0,0.5);
             padding: 40px 30px;
@@ -68,13 +68,25 @@
             border: none;
             border-radius: 6px;
             font-size: 0.98rem;
-            background: #2e0303;
+            background: #2e0303 !important;
             color: #fff !important;
             transition: background 0.2s, color 0.2s;
             box-sizing: border-box;
             display: block;
             font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
             text-align: left;
+        }
+        /* Forçar cor de fundo mesmo com autocomplete/autofill */
+        input:-webkit-autofill,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 1000px #2e0303 inset !important;
+            box-shadow: 0 0 0 1000px #2e0303 inset !important;
+            -webkit-text-fill-color: #fff !important;
+            color: #fff !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
         }
         .reset-box input:first-child {
             margin-top: 0;
@@ -138,6 +150,19 @@
                 transform: none;
             }
         }
+        .nomes_campos {
+            display: flex;
+            justify-content: flex-start;
+            width: 220px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .nomes_campos h4 {
+            margin: 0 0 2px 0;
+            padding: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -167,6 +192,16 @@
         </div>
     </div>
     <script>
+    // Forçar cor correta após autocomplete/autofill
+    window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.querySelectorAll('.reset-box input').forEach(function(el) {
+                el.style.background = '#2e0303';
+                el.style.color = '#fff';
+            });
+        }, 100);
+    });
+        
     // Máscara para o campo de CPF
     document.addEventListener('DOMContentLoaded', function() {
         var cpfInput = document.getElementById('cpfInput');
@@ -195,7 +230,7 @@
     [usuarioInput, cpfInput, novaSenhaInput].forEach(input => {
         if (!input) return;
         input.addEventListener('focus', function() {
-            this.style.background = '#fff6';
+            this.style.background = 'rgba(143, 0, 0, 0.73)';
         });
         input.addEventListener('blur', function() {
             if (this.value.trim() === '') {

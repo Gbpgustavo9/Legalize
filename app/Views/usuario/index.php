@@ -22,7 +22,7 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            background: rgba(143, 0, 0, 0.73);
+            background: linear-gradient(135deg, rgba(109, 0, 0, 0.73), rgba(143, 0, 0, 0.73));
             border-radius: 18px;
             box-shadow: 0 6px 24px rgba(0,0,0,0.5);
             padding: 40px 30px;
@@ -75,25 +75,36 @@
             flex-direction: column;
             align-items: center;
             gap: 0;
+            padding: 0;
+            margin: 0;
         }
         .login-box input {
             width: 220px;
             padding: 8px 10px;
-            margin: 8px 0 0 0;
+            margin: 0 0 12px 0;
             border: none;
             border-radius: 6px;
             font-size: 0.98rem;
-            background: #fff2;
-            color: #fff;
+            background: #2e0303 !important;
+            color: #fff !important;
             transition: background 0.2s;
             box-sizing: border-box;
             display: block;
             font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
             text-align: left;
-            color: #fff !important;
             opacity: 1;
-            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-            font-size: 0.98rem;
+        }
+        /* Forçar cor de fundo mesmo com autocomplete/autofill */
+        input:-webkit-autofill,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 1000px #2e0303 inset !important;
+            box-shadow: 0 0 0 1000px #2e0303 inset !important;
+            -webkit-text-fill-color: #fff !important;
+            color: #fff !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
         }
         .login-box input:first-child {
             margin-top: 0;
@@ -164,6 +175,20 @@
             transform: scale(0.97);
             box-shadow: 0 1px 4px #0002;
         }
+    
+        .nomes_campos {
+            display: flex;
+            justify-content: flex-start;
+            width: 220px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .nomes_campos h4 {
+            margin: 0 0 2px 0;
+            padding: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -182,8 +207,10 @@
                 </div>
             <?php endif; ?>
             <form action="login.php" method="POST">
-                <input type="text" name="usuario" placeholder="Usuário" required id="usuarioInput">
-                <input type="password" name="senha" placeholder="Senha" required id="senhaInput">
+                <div class="nomes_campos"><h4>Usuário </h4></div>
+                <input type="text" name="usuario" placeholder="Digite Seu Usuário" required id="usuarioInput">
+                <div class="nomes_campos"><h4>Senha </h4></div>
+                <input type="password" name="senha" placeholder="Digite Sua Senha" required id="senhaInput">
                 <button type="submit" id="entrarBtn">Entrar</button>
             </form>
             <div class="login-links">
@@ -193,6 +220,16 @@
         </div>
     </div>
     <script>
+    // Forçar cor correta após autocomplete/autofill
+    window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.querySelectorAll('.login-box input').forEach(function(el) {
+                el.style.background = '#2e0303';
+                el.style.color = '#fff';
+            });
+        }, 100);
+    });
+        
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('mainContainer').style.animationDelay = '0s';
         document.getElementById('logoImg').style.animationDelay = '0.2s';
@@ -202,7 +239,7 @@
     const inputs = [document.getElementById('usuarioInput'), document.getElementById('senhaInput')];
     inputs.forEach(input => {
         input.addEventListener('focus', function() {
-            this.style.background = '#fff6';
+            this.style.background = 'rgba(143, 0, 0, 0.73)';
         });
         input.addEventListener('blur', function() {
             if (this.value.trim() === '') {

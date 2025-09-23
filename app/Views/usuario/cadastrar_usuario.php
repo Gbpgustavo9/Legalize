@@ -22,7 +22,7 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            background: rgba(143, 0, 0, 0.73);
+            background: linear-gradient(135deg, rgba(109, 0, 0, 0.73), rgba(143, 0, 0, 0.73));
             border-radius: 18px;
             box-shadow: 0 6px 24px rgba(0,0,0,0.5);
             padding: 40px 30px;
@@ -74,9 +74,8 @@
             border: none;
             border-radius: 6px;
             font-size: 0.98rem;
-            background: #2e0303;
-            background: #2e0303;
-            color: #fff;
+            background: #2e0303 !important;
+            color: #fff !important;
             transition: background 0.2s, color 0.2s;
             box-sizing: border-box;
             display: block;
@@ -85,6 +84,27 @@
             appearance: none;
             -webkit-appearance: none;
             -moz-appearance: none;
+        }
+        /* Forçar cor de fundo mesmo com autocomplete/autofill */
+        input:-webkit-autofill,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 1000px #2e0303 inset !important;
+            box-shadow: 0 0 0 1000px #2e0303 inset !important;
+            -webkit-text-fill-color: #fff !important;
+            color: #fff !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+        select:-webkit-autofill,
+        select:-webkit-autofill:focus,
+        select:-webkit-autofill:hover,
+        select:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 1000px #2e0303 inset !important;
+            box-shadow: 0 0 0 1000px #2e0303 inset !important;
+            -webkit-text-fill-color: #fff !important;
+            color: #fff !important;
+            transition: background-color 5000s ease-in-out 0s;
         }
         .register-box select option {
             background: #2e0303;
@@ -154,6 +174,19 @@
                 transform: none;
             }
         }
+        .nomes_campos {
+            display: flex;
+            justify-content: flex-start;
+            width: 220px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .nomes_campos h4 {
+            margin: 0 0 2px 0;
+            padding: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -169,8 +202,8 @@
             <form action="cadastrar_usuario.php" method="POST">
                 <input type="text" name="nome" placeholder="Nome completo" required>
                 <input type="text" name="cpf" placeholder="CPF" required maxlength="14" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" id="cpfInput">
-                <select name="cargo" required>
-                    <option value="">Oucupação</option>
+                <select name="cargo" required >
+                    <option value="" disabled selected hidden>Ocupação</option>
                     <option value="estudante">Estudante</option>
                     <option value="advogado">Advogado(a)</option>
                     <option value="outro">Outro</option>
@@ -185,6 +218,15 @@
         </div>
     </div>
     <script>
+    // Forçar cor correta após autocomplete/autofill
+    window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            document.querySelectorAll('.register-box input, .register-box select').forEach(function(el) {
+                el.style.background = '#2e0303';
+                el.style.color = '#fff';
+            });
+        }, 100);
+    });
     // Máscara para o campo de CPF
     document.addEventListener('DOMContentLoaded', function() {
         var cpfInput = document.querySelector('input[name="cpf"]');
@@ -198,107 +240,107 @@
                 this.value = v;
             });
         }
-    });
-    // Animação de fade-in com delays
-    document.addEventListener('DOMContentLoaded', function() {
+
+        // Animação de fade-in com delays
         document.getElementById('mainContainer').style.animationDelay = '0s';
         document.getElementById('logoImg').style.animationDelay = '0.2s';
         document.getElementById('registerBox').style.animationDelay = '0.4s';
-    });
 
-    // Efeito de foco animado nos campos
-    const usuarioInput = document.getElementById('usuarioInput');
-    const senhaInput = document.getElementById('senhaInput');
-    const cpfInput = document.getElementById('cpfInput');
-    const nomeInput = document.querySelector('input[name="nome"]');
+        // Efeito de foco animado nos campos
+        const usuarioInput = document.getElementById('usuarioInput');
+        const senhaInput = document.getElementById('senhaInput');
+        const cpfInput2 = document.getElementById('cpfInput');
+        const nomeInput = document.querySelector('input[name="nome"]');
+        const cargoSelect = document.querySelector('select[name="cargo"]');
 
-    // Usuário e Senha: mantém efeito escuro
-    [usuarioInput, senhaInput].forEach(input => {
-        if (!input) return;
-        input.addEventListener('focus', function() {
-            this.style.background = '#fff6';
-        });
-        input.addEventListener('blur', function() {
-            if (this.value.trim() === '') {
-                this.style.background = '#2e0303';
+        // Função para atualizar cor do select
+        function updateCargoBg() {
+            if (!cargoSelect.value) {
+                cargoSelect.style.background = '#2e0303';
+                cargoSelect.style.color = 'rgba(201, 201, 201, 0.61)';
             } else {
-                this.style.background = '#fff2';
+                cargoSelect.style.background = 'rgba(255, 255, 255, 0.13)';
+                cargoSelect.style.color = '#ffffff59';
             }
-        });
-        if (input.value.trim() === '') {
-            input.style.background = '#2e0303';
         }
-    });
-
-    // CPF: escuro só se vazio, claro ao digitar
-    if (cpfInput) {
-        cpfInput.addEventListener('focus', function() {
-            this.style.background = '#fff6';
-        });
-        cpfInput.addEventListener('blur', function() {
-            if (this.value.trim() === '') {
-                this.style.background = '#2e0303';
-            } else {
-                this.style.background = '#fff2';
-            }
-        });
-        cpfInput.addEventListener('input', function() {
-            if (this.value.trim() !== '') {
-                this.style.background = '#fff2';
-            }
-        });
-        if (cpfInput.value.trim() === '') {
-            cpfInput.style.background = '#2e0303';
+        if (cargoSelect) {
+            updateCargoBg();
+            cargoSelect.addEventListener('change', updateCargoBg);
         }
-    }
 
-    // Nome completo: escuro se vazio, claro ao digitar
-    if (nomeInput) {
-        if (nomeInput.value.trim() === '') {
-            nomeInput.style.background = '#2e0303';
+        // Usuário e Senha: mantém efeito escuro
+        [usuarioInput, senhaInput].forEach(input => {
+            if (!input) return;
+            input.addEventListener('focus', function() {
+                this.style.background = 'rgba(143, 0, 0, 0.73)';
+            });
+            input.addEventListener('blur', function() {
+                if (this.value.trim() === '') {
+                    this.style.background = '#2e0303';
+                } else {
+                    this.style.background = '#fff2';
+                }
+            });
+            if (input.value.trim() === '') {
+                input.style.background = '#2e0303';
+            }
+        });
+
+        // CPF: escuro só se vazio, claro ao digitar
+        if (cpfInput2) {
+            cpfInput2.addEventListener('focus', function() {
+                this.style.background = 'rgba(143, 0, 0, 0.73)';
+            });
+            cpfInput2.addEventListener('blur', function() {
+                if (this.value.trim() === '') {
+                    this.style.background = '#2e0303';
+                } else {
+                    this.style.background = '#fff2';
+                }
+            });
+            cpfInput2.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    this.style.background = 'rgba(143, 0, 0, 0.73)';
+                }
+            });
+            if (cpfInput2.value.trim() === '') {
+                cpfInput2.style.background = '#2e0303';
+            }
         }
-        nomeInput.addEventListener('focus', function() {
-            this.style.background = '#fff6';
-        });
-        nomeInput.addEventListener('blur', function() {
-            if (this.value.trim() === '') {
-                this.style.background = '#2e0303';
-            } else {
-                this.style.background = '#fff2';
-            }
-        });
-        nomeInput.addEventListener('input', function() {
-            if (this.value.trim() !== '') {
-                this.style.background = '#fff2';
-            }
-        });
-    }
 
-    // Ocupação: escuro se placeholder, claro ao escolher
-    const cargoSelect = document.querySelector('select[name="cargo"]');
-    if (cargoSelect) {
-        if (!cargoSelect.value) {
-            cargoSelect.style.background = '#2e0303';
+        // Nome completo: escuro se vazio, claro ao digitar
+        if (nomeInput) {
+            if (nomeInput.value.trim() === '') {
+                nomeInput.style.background = '#2e0303';
+            }
+            nomeInput.addEventListener('focus', function() {
+                this.style.background = 'rgba(143, 0, 0, 0.73)';
+            });
+            nomeInput.addEventListener('blur', function() {
+                if (this.value.trim() === '') {
+                    this.style.background = '#2e0303';
+                } else {
+                    this.style.background = '#fff2';
+                }
+            });
+            nomeInput.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    this.style.background = 'rgba(143, 0, 0, 0.73)';
+                }
+            });
         }
-        cargoSelect.addEventListener('change', function() {
-            if (this.value) {
-                this.style.background = '#fff2';
-            } else {
-                this.style.background = '#2e0303';
-            }
-        });
-    }
 
-    // Efeito de clique animado no botão
-    const btn = document.getElementById('cadastrarBtn');
-    btn.addEventListener('mousedown', function() {
-        this.style.transform = 'scale(0.97)';
-    });
-    btn.addEventListener('mouseup', function() {
-        this.style.transform = '';
-    });
-    btn.addEventListener('mouseleave', function() {
-        this.style.transform = '';
+        // Efeito de clique animado no botão
+        const btn = document.getElementById('cadastrarBtn');
+        btn.addEventListener('mousedown', function() {
+            this.style.transform = 'scale(0.97)';
+        });
+        btn.addEventListener('mouseup', function() {
+            this.style.transform = '';
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
     });
     </script>
 </body>
