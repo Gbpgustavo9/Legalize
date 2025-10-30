@@ -20,6 +20,12 @@ $routes->get('redefinir_senha.php', function() {
 	echo view('usuario/redefinir_senha');
 });
 $routes->get('painel', 'Painel::index');
+$routes->get('contratos', 'Contratos::index');
+$routes->post('contratos/generate', 'Contratos::generate');
+$routes->get('analise', 'Analise::index');
+$routes->get('leis', 'Leis::index');
+$routes->get('assistente', 'Assistente::index');
+$routes->get('configuracoes', 'Configuracoes::index');
 $routes->post('redefinir_senha.php', 'Usuario::redefinirSenha');
 $routes->post('login.php', 'Usuario::login');
 $routes->get('login.php', function() {
