@@ -56,8 +56,11 @@ class Usuario extends BaseController
         $user = $usuarioModel->where('usuario', $usuario)->first();
 
         if ($user && password_verify($senha, $user['senha'])) {
-            // Login bem-sucedido, pode salvar dados na sessão se desejar
-            session()->set('usuario_logado', $user['id']);
+            // Login bem-sucedido, salvar dados essenciais na sessão
+            session()->set([
+                'usuario_logado' => $user['id'],
+                'usuario_nome' => $user['usuario']
+            ]);
             return view('painel/painel');
         } else {
             return redirect()->back()->with('error', 'Usuário ou senha inválidos.');
