@@ -1,5 +1,4 @@
 <?php
-// View: Gerar Contrato - mantém o padrão visual do painel
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -9,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Reaproveita o estilo do painel principal (cores e espaçamentos) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background: #f8f8f8; color: #222; min-height:100vh; }
         .sidebar { width:250px; background: linear-gradient(180deg,#330505,#530d0d); color:#fff; position:fixed; height:100vh; display:flex; flex-direction:column; justify-content:space-between; padding-bottom:12px; }
@@ -36,7 +34,6 @@
         input[type=text], textarea, select, input[type=date], input[type=number] { width:100%; padding:10px 12px; border:1px solid #e6e6e6; border-radius:8px; font-size:0.95rem; }
         textarea{ min-height:120px; resize:vertical; }
         .actions{ display:flex; gap:10px; margin-top:14px; }
-        /* Normalize .btn so links and buttons look the same */
         .btn{
             background:#a66a2c;
             color:#fff;
@@ -44,14 +41,14 @@
             border-radius:6px;
             text-decoration:none;
             display:inline-block;
-            border:none;                /* remove native button border */
-            cursor:pointer;             /* pointer cursor for buttons */
-            font:inherit;               /* inherit font settings */
+            border:none;                
+            cursor:pointer;            
+            font:inherit;               
             line-height:normal;
-            -webkit-appearance:none;    /* remove native appearance */
+            -webkit-appearance:none;   
             -moz-appearance:none;
             appearance:none;
-            box-shadow:none;            /* remove native shadows */
+            box-shadow:none;         
         }
         .btn:hover{ opacity:0.95; }
         .btn:active{ transform:translateY(1px); }
@@ -60,12 +57,10 @@
         .btn.secondary{ background:#6c6c6c; border:none; }
         .note{ font-size:0.9rem; color:#666; margin-top:8px; }
 
-        /* Contract preview box */
         .preview{ background:#fafafa; border:1px solid #ececec; padding:12px; border-radius:8px; height:500px; overflow:auto; white-space:pre-wrap; }
 
         .form-row{ display:grid; grid-template-columns: repeat(2,1fr); gap:12px; }
         @media (max-width:700px){ .form-row{ grid-template-columns:1fr; } }
-        /* ===== FOOTER ===== */
         footer { text-align: center; font-size: 0.8rem; color: #777; margin-top: 40px; }
     </style>
 </head>
@@ -158,7 +153,6 @@
     </main>
 
     <script>
-        // Model templates (simple placeholders)
         const templates = {
             contrato_venda: `CONTRATO DE COMPRA E VENDA\n\nEntre {{PARTE_A}} e {{PARTE_B}}, tem-se justo e contratado o seguinte:\n\nCláusulas:\n\n1. Objeto: Venda de bens conforme acordado.\n\n2. Valor: R$ {{VALOR}}.\n\n3. Data: {{DATA}}.\n\n{{CLAUSULAS}}\n\nAssinam as partes.`,
 

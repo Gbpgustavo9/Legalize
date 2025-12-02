@@ -85,7 +85,6 @@
             -webkit-appearance: none;
             -moz-appearance: none;
         }
-        /* Forçar cor de fundo mesmo com autocomplete/autofill */
         input:-webkit-autofill,
         input:-webkit-autofill:focus,
         input:-webkit-autofill:hover,
@@ -218,7 +217,6 @@
         </div>
     </div>
     <script>
-    // Forçar cor correta após autocomplete/autofill
     window.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             document.querySelectorAll('.register-box input, .register-box select').forEach(function(el) {
@@ -227,7 +225,6 @@
             });
         }, 100);
     });
-    // Máscara para o campo de CPF
     document.addEventListener('DOMContentLoaded', function() {
         var cpfInput = document.querySelector('input[name="cpf"]');
         if (cpfInput) {
@@ -241,19 +238,16 @@
             });
         }
 
-        // Animação de fade-in com delays
         document.getElementById('mainContainer').style.animationDelay = '0s';
         document.getElementById('logoImg').style.animationDelay = '0.2s';
         document.getElementById('registerBox').style.animationDelay = '0.4s';
 
-        // Efeito de foco animado nos campos
         const usuarioInput = document.getElementById('usuarioInput');
         const senhaInput = document.getElementById('senhaInput');
         const cpfInput2 = document.getElementById('cpfInput');
         const nomeInput = document.querySelector('input[name="nome"]');
         const cargoSelect = document.querySelector('select[name="cargo"]');
 
-        // Função para atualizar cor do select
         function updateCargoBg() {
             if (!cargoSelect.value) {
                 cargoSelect.style.background = '#2e0303';
@@ -268,7 +262,6 @@
             cargoSelect.addEventListener('change', updateCargoBg);
         }
 
-        // Usuário e Senha: mantém efeito escuro
         [usuarioInput, senhaInput].forEach(input => {
             if (!input) return;
             input.addEventListener('focus', function() {
@@ -286,7 +279,6 @@
             }
         });
 
-        // CPF: escuro só se vazio, claro ao digitar
         if (cpfInput2) {
             cpfInput2.addEventListener('focus', function() {
                 this.style.background = 'rgba(143, 0, 0, 0.73)';
@@ -308,7 +300,6 @@
             }
         }
 
-        // Nome completo: escuro se vazio, claro ao digitar
         if (nomeInput) {
             if (nomeInput.value.trim() === '') {
                 nomeInput.style.background = '#2e0303';
@@ -330,7 +321,6 @@
             });
         }
 
-        // Efeito de clique animado no botão
         const btn = document.getElementById('cadastrarBtn');
         btn.addEventListener('mousedown', function() {
             this.style.transform = 'scale(0.97)';

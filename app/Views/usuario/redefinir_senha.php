@@ -192,7 +192,6 @@
         </div>
     </div>
     <script>
-    // Forçar cor correta após autocomplete/autofill
     window.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             document.querySelectorAll('.reset-box input').forEach(function(el) {
@@ -202,7 +201,6 @@
         }, 100);
     });
         
-    // Máscara para o campo de CPF
     document.addEventListener('DOMContentLoaded', function() {
         var cpfInput = document.getElementById('cpfInput');
         if (cpfInput) {
@@ -216,13 +214,11 @@
             });
         }
     });
-    // Animação de fade-in com delays
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('mainContainer').style.animationDelay = '0s';
         document.getElementById('logoImg').style.animationDelay = '0.2s';
         document.getElementById('resetBox').style.animationDelay = '0.4s';
     });
-    // Efeito de foco animado nos inputs
     const usuarioInput = document.getElementById('usuarioInput');
     const cpfInput = document.getElementById('cpfInput');
     const novaSenhaInput = document.getElementById('novaSenhaInput');
@@ -248,7 +244,6 @@
             input.style.background = '#2e0303';
         }
     });
-    // Efeito de clique animado no botão
     const btn = document.getElementById('redefinirBtn');
     btn.addEventListener('mousedown', function() {
         this.style.transform = 'scale(0.97)';

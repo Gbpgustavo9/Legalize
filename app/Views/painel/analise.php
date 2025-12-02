@@ -78,7 +78,6 @@
             document.getElementById('result').textContent = text;
         });
 
-        // Form submission is visual-only for now
         document.getElementById('analiseForm').addEventListener('submit', function(e){ e.preventDefault();
             document.getElementById('result').textContent = 'Análise simulada: nenhuma regra aplicada (em desenvolvimento).';
         });

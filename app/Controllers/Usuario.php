@@ -22,7 +22,6 @@ class Usuario extends BaseController
         $usuario = $request->getPost('usuario');
         $senha = $request->getPost('senha');
 
-        // Validação simples
         if (!$nome || !$cpf || !$cargo || !$usuario || !$senha) {
             return redirect()->back()->with('error', 'Preencha todos os campos.');
         }
@@ -36,7 +35,6 @@ class Usuario extends BaseController
             'senha' => password_hash($senha, PASSWORD_DEFAULT),
         ];
 
-        // Salva o usuário
         $usuarioModel->insert($data);
 
         return redirect()->to('/')->with('success', 'Usuário cadastrado com sucesso!');
@@ -56,7 +54,6 @@ class Usuario extends BaseController
         $user = $usuarioModel->where('usuario', $usuario)->first();
 
         if ($user && password_verify($senha, $user['senha'])) {
-            // Login bem-sucedido, salvar dados essenciais na sessão
             session()->set([
                 'usuario_logado' => $user['id'],
                 'usuario_nome' => $user['usuario']

@@ -7,7 +7,6 @@ class Contratos extends BaseController
 {
     public function index()
     {
-        // Exibe a página de gerar contrato
         return view('painel/gerar_contrato');
     }
 

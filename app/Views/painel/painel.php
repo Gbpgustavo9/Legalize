@@ -8,7 +8,6 @@
 </head>
 <body>
 
-    <!-- ===== SIDEBAR ===== -->
     <aside class="sidebar">
         <div>
             <div class="logo">
@@ -28,7 +27,6 @@
         </div>
     </aside>
 
-    <!-- ===== NAVBAR ===== -->
     <header class="navbar">
         <h2>Painel de Controle</h2>
         <div class="user-info">
@@ -38,7 +36,6 @@
         </div>
     </header>
 
-    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
     <main class="content">
         <h2>Bem-vindo ao Legalize</h2>
         <p style="margin: 8px 0 25px 0; color:#444;">

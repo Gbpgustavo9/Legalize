@@ -220,7 +220,6 @@
         </div>
     </div>
     <script>
-    // Forçar cor correta após autocomplete/autofill
     window.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             document.querySelectorAll('.login-box input').forEach(function(el) {

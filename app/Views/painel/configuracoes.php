@@ -102,7 +102,6 @@
     </main>
 
     <script>
-    // Handlers visuais (mock) — substitua por chamadas reais ao servidor quando desejar
     document.getElementById('btn-salvar-perfil').addEventListener('click', function(){
         alert('Perfil salvo (simulado).');
     });
