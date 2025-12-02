@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Controllers;
 
-use CodeIgniter\Model;
+use App\Controllers\BaseController;
 
-class LeiModel extends Model
+class Painel extends BaseController
 {
-    protected $table = 'leis';
-    protected $primaryKey = 'id';
-    protected $allowedFields = ['titulo', 'descricao', 'data_publicacao'];
+    public function index()
+    {
+        return view('painel/painel');
+    }
 }
